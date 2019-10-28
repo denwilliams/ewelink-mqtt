@@ -1,0 +1,6 @@
+mqtt:
+  uri: mqtt://localhost
+  prefix: ewelink/
+service:
+  email: name@example.com
+  password: password

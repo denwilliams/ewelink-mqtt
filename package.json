@@ -1,0 +1,23 @@
+{
+  "name": "ewelink-mqtt",
+  "version": "0.1.0",
+  "description": "MQTT interface to https://www.npmjs.com/package/ewelink-api",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denwilliams/ewelink-mqtt.git"
+  },
+  "author": "Den Williams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denwilliams/ewelink-mqtt/issues"
+  },
+  "homepage": "https://github.com/denwilliams/ewelink-mqtt#readme",
+  "dependencies": {
+    "ewelink-api": "^1.7.0",
+    "mqtt-usvc": "^1.0.6"
+  }
+}
