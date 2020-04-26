@@ -1,8 +1,8 @@
 mqtt:
   uri: mqtt://localhost
-  prefix: ewelink/
+  prefix: ewelink
 http:
-  port: 9093
+  port: 9904
 service:
   email: name@example.com
   password: password

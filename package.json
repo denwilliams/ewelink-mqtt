@@ -21,6 +21,6 @@
   "homepage": "https://github.com/denwilliams/ewelink-mqtt#readme",
   "dependencies": {
     "ewelink-api": "^1.10.0",
-    "mqtt-usvc": "^2.2.1"
+    "mqtt-usvc": "^3.0.2"
   }
 }
