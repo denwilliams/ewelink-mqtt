@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 
 const mqttusvc = require("mqtt-usvc");
@@ -14,13 +15,13 @@ const connection = new EweLink({
 });
 
 service.on("message", async (topic, data) => {
-  if (!topic.startsWith("set/")) {
+  if (!topic.startsWith("~/set/")) {
     console.log("unsupported message", topic);
     return;
   }
 
   try {
-    const [_, deviceId, action] = topic.split("/");
+    const [, , deviceId, action] = topic.split("/");
     console.info(`SET DEVICE [${deviceId}] '${action}' ${data}`);
 
     const status = await handleAction(deviceId, action, data);
@@ -30,7 +31,7 @@ service.on("message", async (topic, data) => {
   }
 });
 
-service.subscribe("set/#");
+service.subscribe("~/set/#");
 
 connect();
 

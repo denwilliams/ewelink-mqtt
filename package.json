@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "ewelink-mqtt": "./main.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/denwilliams/ewelink-mqtt.git"
@@ -17,7 +20,7 @@
   },
   "homepage": "https://github.com/denwilliams/ewelink-mqtt#readme",
   "dependencies": {
-    "ewelink-api": "^1.7.0",
-    "mqtt-usvc": "^1.0.6"
+    "ewelink-api": "^2.0.0",
+    "mqtt-usvc": "^2.2.1"
   }
 }
