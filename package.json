@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/denwilliams/ewelink-mqtt#readme",
   "dependencies": {
-    "ewelink-api": "^2.0.0",
+    "ewelink-api": "^1.10.0",
     "mqtt-usvc": "^2.2.1"
   }
 }
