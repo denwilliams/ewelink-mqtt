@@ -1,8 +1,10 @@
 # ewelink-mqtt
 
-THIS IS A FIRST DRAFT - HAS NOT BEEN TESTED
+PARTIALLY COMPLETE, MINIMALLY TESTED
 
 MQTT wrapper/interface to https://www.npmjs.com/package/ewelink-api
+
+NOTE: ewelink-api has a lot of updates since this was written, including LAN mode. Will hopefully update to v3 of this soon. I don't have many ewelink devices to test any more however.
 
 Copy config.example.yml somewhere and edit.
 
