@@ -2,7 +2,7 @@
 
 THIS IS A FIRST DRAFT - HAS NOT BEEN TESTED
 
-MQTT interface to https://www.npmjs.com/package/ewelink-api
+MQTT wrapper/interface to https://www.npmjs.com/package/ewelink-api
 
 Copy config.example.yml somewhere and edit.
 
