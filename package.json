@@ -23,5 +23,9 @@
     "ewelink-api": "^1.10.0",
     "mqtt-usvc": "^3.1.0",
     "prom-client": "^14.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.15",
+    "postject": "^1.0.0-alpha.6"
   }
 }
