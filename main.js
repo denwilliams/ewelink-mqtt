@@ -2,97 +2,78 @@
 "use strict";
 
 const mqttusvc = require("mqtt-usvc");
-const EweLink = require("ewelink-api");
+const { EweClient } = require("./ewelink");
 
 async function main() {
-  let devices = {};
-
   const service = await mqttusvc.create();
-  console.log(service.config);
-  const connection = new EweLink({
-    email: service.config.email,
-    password: service.config.password
+
+  const client = new EweClient({
+    account: service.config.account,
+    password: service.config.password,
+    areaCode: service.config.areaCode || "+1",
+    region: service.config.region || "us",
+  });
+
+  client.onMessage((msg) => {
+    const { deviceid, action, params } = msg;
+
+    if (!deviceid || !params) {
+      if (msg.config) {
+        // heartbeat
+        return;
+      }
+      console.warn("Unsupported eWeLink message %j", msg);
+      return;
+    }
+
+    service.send(`~/status/${deviceid}`, { action, params });
+    if (params.switch) {
+      service.send(`~/status/${deviceid}/switch`, params.switch);
+      service.send(`~/status/${deviceid}/switch/${params.switch}`);
+    } else {
+      console.warn(
+        "Unexpected message params device=%s params=%j",
+        deviceid,
+        params
+      );
+    }
   });
 
   service.on("message", async (topic, data) => {
     if (!topic.startsWith("~/set/")) {
-      console.log("unsupported message", topic);
+      console.log("Unsupported MQTT message", topic);
       return;
     }
 
     try {
       const [, , deviceId, action] = topic.split("/");
-      console.info(`SET DEVICE [${deviceId}] '${action}' ${data}`);
+      console.info(`Setting device [${deviceId}] '${action}' ${data}`);
 
       const status = await handleAction(deviceId, action, data);
-      console.log("RESPONSE", status);
+      console.log("Response %j", status);
     } catch (err) {
-      console.error("ERR", err);
+      console.error("Error", err);
     }
   });
 
+  await client.init();
   service.subscribe("~/set/#");
-
-  connect();
 
   async function handleAction(deviceId, action, data) {
     switch (action) {
-      case "power":
-        return connection.setDevicePowerState(deviceId, JSON.parse(data));
       case "on":
       case "off":
       case "toggle":
-        return connection.setDevicePowerState(deviceId, action);
-    }
-  }
-
-  async function connect() {
-    try {
-      await connection.login();
-
-      const apiDevices = await connection.getDevices();
-
-      console.log(`Found ${apiDevices.length} devices`);
-
-      apiDevices.forEach(d => {
-        console.log(
-          `${d.name} [${d.deviceid}] (${d.brandName} ${d.productModel}|${d.params.fwVersion}) online=${d.online} switch=${d.params.switch}`
-        );
-        devices[d.deviceid] = d;
-      });
-
-      // call openWebSocket method with a callback as argument
-      const socket = await connection.openWebSocket(async data => {
-        try {
-          // data is the message from eWeLink
-          // console.log(data);
-          const { deviceid, action, params } = data;
-          const device = devices[deviceid];
-
-          // TODO: fetch new devices
-          if (!device) {
-            return;
-          }
-
-          Object.assign(device, params);
-
-          service.send(`status/${deviceid}`, device);
-
-          if (params.switch) {
-            service.send(`status/${deviceid}/switch`, params.switch);
-            service.send(`status/${deviceid}/switch/${params.switch}`);
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      });
-    } catch (err) {
-      console.error(err);
+        return client.lanSwitch(deviceId, { switch: action });
+      case "power":
+        return client.lanSwitch(deviceId, data);
+      default:
+        console.warn(`Unsupported action ${action}`);
     }
   }
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err.stack);
   process.exit(1);
 });
