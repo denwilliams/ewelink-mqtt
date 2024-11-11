@@ -8,23 +8,7 @@ const appSecret = "mXLOjea0woSMvK9gw7Fjsy7YlFO4iSu6";
 
 exports.EweClient = class EweClient extends EventEmitter {
   /** @type {*} */
-  userInfo = {
-    user: {
-      timezone: {},
-      accountLevel: 10,
-      countryCode: "+61",
-      email: "mail+home@denwilliams.net",
-      apikey: "e5bdd31c-af79-4be0-a4e5-9c3600a1decf",
-      accountConsult: false,
-      appForumEnterHide: false,
-      appVersion: "5.10.1",
-      denyRecharge: false,
-      ipCountry: "AU",
-    },
-    at: "721830cea59cff36fe67e792c76f338f9918ddf6",
-    rt: "f2ec290c33f091f6ff44c6004738dd77a0375e11",
-    region: "us",
-  };
+  userInfo = null;
   devices = {};
 
   constructor(

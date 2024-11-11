@@ -10,7 +10,7 @@ async function main() {
   const client = new EweClient({
     account: service.config.account,
     password: service.config.password,
-    areaCode: service.config.areaCode || "+1",
+    areaCode: service.config.areaCode || service.config.area_code || "+1",
     region: service.config.region || "us",
   });
 
