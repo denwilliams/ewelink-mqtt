@@ -2,13 +2,14 @@
   "name": "ewelink-mqtt",
   "version": "0.6.2",
   "description": "MQTT interface to https://www.npmjs.com/package/ewelink-api",
-  "main": "main.js",
+  "main": "main.mjs",
+  "type": "module",
   "scripts": {
-    "start": "node main.js",
+    "start": "node main.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "ewelink-mqtt": "./main.js"
+    "ewelink-mqtt": "./main.mjs"
   },
   "repository": {
     "type": "git",

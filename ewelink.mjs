@@ -1,12 +1,12 @@
 //@ts-check
-const eWeLink = require("ewelink-api-next").default;
-const crypto = require("crypto");
-const EventEmitter = require("events");
+import crypto from "node:crypto";
+import EventEmitter from "node:events";
+import eWeLink from "ewelink-api-next";
 
 const appId = "Uw83EKZFxdif7XFXEsrpduz5YyjP7nTl";
 const appSecret = "mXLOjea0woSMvK9gw7Fjsy7YlFO4iSu6";
 
-exports.EweClient = class EweClient extends EventEmitter {
+export class EweClient extends EventEmitter {
   /** @type {*} */
   userInfo = null;
   devices = {};
@@ -234,7 +234,7 @@ exports.EweClient = class EweClient extends EventEmitter {
       console.error("Failed to switch device %j", res);
     }
   }
-};
+}
 
 function md5(str) {
   return crypto.createHash("md5").update(str).digest("hex");

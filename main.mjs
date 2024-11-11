@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 
-const mqttusvc = require("mqtt-usvc");
-const { EweClient } = require("./ewelink");
+import mqttusvc from "mqtt-usvc";
+import { EweClient } from "./ewelink.mjs";
 
 async function main() {
   const service = await mqttusvc.create();
