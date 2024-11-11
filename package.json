@@ -1,6 +1,6 @@
 {
   "name": "ewelink-mqtt",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "MQTT interface to https://www.npmjs.com/package/ewelink-api",
   "main": "main.mjs",
   "type": "module",
