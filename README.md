@@ -14,6 +14,8 @@ Run
 CONFIG_PATH=config.yml node main
 ```
 
+> NOTE: toggle not working at the moment, use on/off
+
 Turn switches on/off/toggle by sending to:
 
 `ewelink/set/{deviceid}/{toggle|on|off}`
