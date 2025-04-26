@@ -2,7 +2,7 @@ FROM node:23-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
-COPY main.mjs ./
+COPY main.mjs ewelink.mjs ./
 
 ARG MQTT_URI
 ENV MQTT_URI=$MQTT_URI
