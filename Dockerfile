@@ -2,7 +2,7 @@ FROM node:23-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
-COPY main.js ./
+COPY main.mjs ./
 
 ARG MQTT_URI
 ENV MQTT_URI=$MQTT_URI
@@ -16,4 +16,4 @@ ENV HTTP_PORT=$HTTP_PORT
 ARG SERVICE_CONFIG
 ENV SERVICE_CONFIG=$SERVICE_CONFIG
 
-CMD ["node", "/app/main.js"]
+CMD ["node", "/app/main.mjs"]
