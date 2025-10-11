@@ -21,7 +21,7 @@ export class EweClient extends EventEmitter {
       appId,
       appSecret,
       region: "us", // cn、us、eu、as、ir
-      logObj: eWeLink.createLogger("eu"),
+      logObj: console,
     });
   }
 
@@ -192,7 +192,7 @@ export class EweClient extends EventEmitter {
 
     const lanClient = new eWeLink.Lan({
       selfApikey: this.userInfo.user.apikey,
-      logObj: eWeLink.createLogger("lan"),
+      logObj: console,
     });
 
     lanClient.discovery((server) => {
@@ -218,7 +218,7 @@ export class EweClient extends EventEmitter {
 
     const lanClient = new eWeLink.Lan({
       selfApikey: this.userInfo.user.apikey,
-      logObj: eWeLink.createLogger("lan"),
+      logObj: console,
     });
 
     const res = await lanClient.zeroconf.switch({
